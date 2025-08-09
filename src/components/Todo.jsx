@@ -7,9 +7,9 @@ export default function Todo() {
 
   return (
     <div>
-      <Form tasks={tasks} setTasks={setTasks}/>
+      <Form tasks={tasks} setTasks={setTasks} />
 
-      <TodoList tasks={tasks} />
+      <TodoList tasks={tasks} setTasks={setTasks} />
       {console.log(tasks)}
     </div>
   );

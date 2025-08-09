@@ -2,15 +2,16 @@ import { useState } from "react";
 import styles from "./form.module.css";
 
 export default function Form({ tasks, setTasks }) {
-  const [todo, setTodo] = useState("");
+  const [todo, setTodo] = useState({ name: "", isDone: false });
 
   function handleSubmit(e) {
     e.preventDefault();
     // append to tasks list
     if (todo != "") {
-      if (!tasks.includes(todo)) { // check if it has duplicate
+      if (!tasks.includes(todo)) {
+        // check if it has duplicate
         setTasks([...tasks, todo]);
-        setTodo(""); //resetting input
+        setTodo({name:"", isDone:false}); //resetting input
       }
     }
   }
@@ -19,12 +20,13 @@ export default function Form({ tasks, setTasks }) {
     <form className={styles.form} onSubmit={handleSubmit}>
       <input
         type="text"
-        value={todo}
-        onChange={(e) => setTodo(e.target.value)}
+        value={todo.name}
+        onChange={(e) => setTodo({ ...todo, name: e.target.value })}
       />
       <br />
       <br />
       <button type="submit">submit</button>
+      {console.log(tasks)}
     </form>
   );
 }
