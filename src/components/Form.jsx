@@ -6,12 +6,20 @@ export default function Form({ tasks, setTasks }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    // append to tasks list
-    if (todo != "") {
-      if (!tasks.includes(todo)) {
-        // check if it has duplicate
-        setTasks([...tasks, todo]);
-        setTodo({name:"", isDone:false}); //resetting input
+
+    const trimmedName = todo.name.trim();
+
+    if (trimmedName !== "") {
+      // Check if any task already has the same name (case-insensitive)
+      const exists = tasks.some(
+        (task) => task.name.toLowerCase() === trimmedName.toLowerCase()
+      );
+
+      if (!exists) {
+        setTasks([...tasks, { ...todo, name: trimmedName }]);
+        setTodo({ name: "", isDone: false }); // reset input
+      } else {
+        alert("Task with the same name already exists!");
       }
     }
   }
@@ -22,11 +30,11 @@ export default function Form({ tasks, setTasks }) {
         type="text"
         value={todo.name}
         onChange={(e) => setTodo({ ...todo, name: e.target.value })}
+        placeholder="Enter a task"
       />
       <br />
       <br />
-      <button type="submit">submit</button>
-      {console.log(tasks)}
+      <button type="submit">Submit</button>
     </form>
   );
 }
