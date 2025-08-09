@@ -1,7 +1,15 @@
-body{
-    background: #69dbd521;
-    display: flex;
-    flex-direction: column;
-    justify-items: center;
+.App {
+  min-height: 100vh;
+  background: #f5f6fa; /* soft background color */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.App > * {
+  width: 100%;
+  max-width: 600px; /* keeps content compact on large screens */
+}
